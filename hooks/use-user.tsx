@@ -76,7 +76,7 @@ export const MyUserContextProvider = (props: Props) => {
     subscription
   }
 
-  return <MyUserContextProvider value={value} {...props} />
+  return <UserContext.Provider value={value} {...props} />
 }
 
 export const useUser = () => {

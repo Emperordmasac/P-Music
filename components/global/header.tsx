@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation"
 import { RxCaretLeft, RxCaretRight } from "react-icons/rx"
 
 import Button from "@/components/ui/button"
+import useAuthModal from "@/hooks/use-auth-modal"
 
 interface HeaderProps {
   className?: string
@@ -15,6 +16,7 @@ interface HeaderProps {
 
 export default function Header({ className, children }: HeaderProps) {
   const router = useRouter()
+  const authModal = useAuthModal()
 
   const handleLogout = () => {
     //handle logout
@@ -56,12 +58,20 @@ export default function Header({ className, children }: HeaderProps) {
         <div className="flex items-center justify-between gap-x-4">
           <>
             <div>
-              <Button className=" bg-transparent text-neutral-300 font-medium">
+              <Button
+                onClick={authModal.onOpen}
+                className=" bg-transparent text-neutral-300 font-medium"
+              >
                 Sign up
               </Button>
             </div>
             <div>
-              <Button className=" bg-white px-6 py-2">Log in</Button>
+              <Button
+                onClick={authModal.onOpen}
+                className=" bg-white px-6 py-2"
+              >
+                Log in
+              </Button>
             </div>
           </>
         </div>
