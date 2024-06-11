@@ -41,7 +41,7 @@ export default function AuthModal() {
       <Auth
         theme="dark"
         magicLink
-        providers={["google"]}
+        providers={["google", 'github']}
         supabaseClient={supabaseClient}
         appearance={{
           theme: ThemeSupa,
