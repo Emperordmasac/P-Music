@@ -3,9 +3,21 @@
 import { TbPlaylist } from "react-icons/tb"
 import { AiOutlinePlus } from "react-icons/ai"
 
+import { useUser } from "@/hooks/use-user"
+import useAuthModal from "@/hooks/use-auth-modal"
+import useUploadModal from "@/hooks/use-upload-modal"
+
 export default function SongLibrary() {
+  const authModal = useAuthModal()
+  const uploadModal = useUploadModal()
+  const { user } = useUser()
+
   const handleUpload = () => {
-    // handle upload
+    if (!user) {
+      return authModal.onOpen()
+    }
+    // -- TODO: Check for subsription
+    return uploadModal.onOpen()
   }
 
   return (
