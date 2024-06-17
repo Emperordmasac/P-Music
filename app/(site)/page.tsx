@@ -1,7 +1,15 @@
 import Header from "@/components/global/header"
 import ListItem from "@/components/global/list-item"
+import PageContent from "@/components/page-content"
 
-export default function Home() {
+import getSongs from "@/actions/getSongs"
+
+// -- disable cache for this page
+export const revalidate = 0
+
+export default async function Home() {
+  const songs = await getSongs()
+
   return (
     <div className=" bg-neutral-900 rounded-lg h-full w-full overflow-hidden overflow-y-auto">
       <Header>
@@ -21,7 +29,7 @@ export default function Home() {
         <div className=" flex justify-between items-center">
           <h1 className=" text-white text-2xl font-semibold">New realeases</h1>
         </div>
-        <div>List of songs!</div>
+        <PageContent songs={songs} />
       </div>
     </div>
   )
