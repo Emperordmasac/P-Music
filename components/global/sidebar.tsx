@@ -8,12 +8,14 @@ import { usePathname } from "next/navigation"
 import Box from "@/components/ui/box"
 import SongLibrary from "@/components/song-library"
 import SidebarItem from "@/components/global/sidebar-item"
+import { Song } from "@/types"
 
 interface SidebarProps {
   children: React.ReactNode
+  songs: Song[]
 }
 
-export default function Siderbar({ children }: SidebarProps) {
+export default function Siderbar({ children, songs }: SidebarProps) {
   const pathname = usePathname()
 
   const routes = useMemo(
@@ -44,7 +46,7 @@ export default function Siderbar({ children }: SidebarProps) {
           </div>
         </Box>
         <Box className=" overflow-y-auto h-full">
-          <SongLibrary />
+          <SongLibrary songs={songs} />
         </Box>
       </div>
       <main className=" h-full flex-1 overflow-y-auto py-2">{children}</main>
